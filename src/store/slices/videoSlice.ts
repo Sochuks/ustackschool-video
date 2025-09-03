@@ -22,6 +22,16 @@ const videoSlice = createSlice({
             }
             state.allVideos.push(newVideo);
         },
+        deleteVideo: (state, action: PayloadAction<string>) =>{
+            state.allVideos.filter(video => video.id !== action.payload);
+            if(state.currentVideoID === action.payload){
+                state.currentVideoID = null;
+            }
+        },
+
+        setCurrentVideo: (state, action:PayloadAction<string>)=>{
+            state.currentVideoID = action.payload;
+        },
     }
 });
 

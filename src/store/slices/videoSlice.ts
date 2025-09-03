@@ -35,5 +35,5 @@ const videoSlice = createSlice({
     }
 });
 
-export const {addVideo} = videoSlice.actions;
+export const {addVideo, deleteVideo, setCurrentVideo} = videoSlice.actions;
 export default videoSlice.reducer;

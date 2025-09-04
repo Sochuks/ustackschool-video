@@ -25,7 +25,16 @@ function App() {
           </h1>
         </header>
         <main className='w-full max-w-5xl space-y-8'>
-          <VideoPlayer videoID={videoId} />
+          {/* Grid Container */}
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
+            {/* Video Column */}
+            <div className="h-32 rounded bg-gray-300 lg:col-span-2">
+              <VideoPlayer videoID={videoId} />
+            </div>
+            
+            {/* Video List */}
+            <div className="h-32 rounded bg-gray-300"></div>
+          </div>
         </main>
       </div>
     </>

@@ -7,8 +7,17 @@ interface VideosState {
 }
 
 const initialState: VideosState = {
-    allVideos: [],
-    currentVideoID: null,
+    allVideos: [
+        {
+            id: 'test-video-1',
+            url: 'https://www.youtube.com/watch?v=kq6IhAZVNh8', // Rick Astley - Never Gonna Give You Up
+            thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg',
+            durationSec: 212,
+            views: 1000000000,
+            createdAt: new Date().toISOString(),
+        },
+    ],
+    currentVideoID: 'test-video-1',
 };
 
 const videoSlice = createSlice({

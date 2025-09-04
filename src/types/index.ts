@@ -1,6 +1,8 @@
 export interface Video {
-    id: string,
-    title: string,
-    description: string; 
-    url: string
+    id: string, 
+    url: string,
+    thumbnail:string,
+    durationSec: number,
+    views: number,
+    createdAt: string,
 }

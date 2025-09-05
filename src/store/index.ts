@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import videosReducer from './slices/VideoSlice';
+import videosReducer from './slices/videoSlice';
 
 // Create redux store to combine reducers
 const store = configureStore({

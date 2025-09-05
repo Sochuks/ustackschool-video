@@ -13,36 +13,24 @@ const initialState: VideosState = {
             title: 'The first Whack video',
             url: 'https://www.youtube.com/watch?v=kq6IhAZVNh8', // Rick Astley - Never Gonna Give You Up
             thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg',
-            durationSec: 212,
-            views: 1000000000,
-            createdAt: new Date().toISOString(),
         },
           {
             id: 'live-stream-guide-1',
             title: 'How to Live Stream on YouTube (The COMPLETE 2025 Guide)',
             url: 'https://www.youtube.com/watch?v=Rdta45g_hg8',
             thumbnail: 'https://img.youtube.com/vi/Rdta45g_hg8/0.jpg',
-            durationSec: 1980, // Approx. 33 minutes
-            views: 125000, // Estimated based on recent popularity
-            createdAt: new Date('2025-09-02T10:00:00Z').toISOString(),
         },
         {
             id: 'live-stream-beginners-2',
             title: 'How To LIVE STREAM On YouTube - UPDATED Beginners ...',
             url: 'https://www.youtube.com/watch?v=x9ZZS1v11Sc',
             thumbnail: 'https://img.youtube.com/vi/x9ZZS1v11Sc/0.jpg',
-            durationSec: 720, // Approx. 12 minutes
-            views: 98000,
-            createdAt: new Date('2024-02-29T08:00:00Z').toISOString(),
         },
         {
             id: 'live-stream-tutorial-3',
             title: 'How to LIVESTREAM on YouTube - UPDATED Beginners ...',
             url: 'https://www.youtube.com/watch?v=BSz5a5ryc-k',
             thumbnail: 'https://img.youtube.com/vi/BSz5a5ryc-k/0.jpg',
-            durationSec: 900, // Approx. 15 minutes
-            views: 210000,
-            createdAt: new Date('2022-08-21T15:00:00Z').toISOString(),
         }
 
 

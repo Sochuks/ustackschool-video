@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import VideoPlayer from './components/VideoPlayer';
 import type { RootState, AppDispatch } from './store';
 import VideoList from './components/VideoList';
+import AddVideoForm from './components/AddVideoForm';
 
 function App() {
  
@@ -38,6 +39,9 @@ function App() {
               <VideoList />
             </div>
           </div>
+
+          {/* Form */}
+          <AddVideoForm />
         </main>
       </div>
     </>

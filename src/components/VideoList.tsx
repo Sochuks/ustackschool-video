@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from "../store";
-import { deleteVideo, setCurrentVideo } from "../store/slices/VideoSlice";
+import { deleteVideo, setCurrentVideo } from "../store/slices/videoSlice";
 import type { Video } from "../types";
 
 
@@ -24,7 +24,7 @@ const VideoList: React.FC = () => {
             Video Library
         </h2>
         {videos.map((video: Video) => (
-            <div className="flex items-center justify-between border-b hover:bg-gray-100">
+            <div key={video.id} className="flex items-center justify-between border-b hover:bg-gray-100">
                 <h3 className="text-xl text-blue-500">{video.title}</h3>
 
                 <div className="flex ">

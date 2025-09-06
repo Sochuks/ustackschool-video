@@ -6,6 +6,11 @@ interface VideosState {
     currentVideoID: string | null;
 }
 
+// Save video to local storage
+const saveVideos = (videos: Video[]) => {
+  localStorage.setItem('videos', JSON.stringify(videos));
+};
+
 const initialState: VideosState = {
     allVideos: [
         {
@@ -52,7 +57,7 @@ const videoSlice = createSlice({
         deleteVideo: (state, action: PayloadAction<string>) =>{
            state.allVideos = state.allVideos.filter(video => video.id !== action.payload);
             if(state.currentVideoID === action.payload){
-                state.currentVideoID = null;
+                state.currentVideoID = state.allVideos[0]?.id ?? null;
             }
         },
 

@@ -11,6 +11,12 @@ const AddVideoForm: React.FC = () => {
 
     const dispatch = useDispatch();
 
+    // Validate YouTube URL
+    const validateYoutubeURL = (url: string): boolean =>{
+        const regex = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        return regex.test(url);
+    }
+
     // Handle form submission
     const handleSubmit = (e: React.FormEvent) =>{
         e.preventDefault();
@@ -20,8 +26,8 @@ const AddVideoForm: React.FC = () => {
             setError('All Fields are required!');
             return;
         }
-        if(!url.includes('youtube.com') && !url.includes('youtu.be')){
-            setError('Please enter a valid YouTube URL');
+        if(!validateYoutubeURL(url)){
+            setError('Please enter a valid YouTube URL (e.g., https://www.youtube.com/watch?v=...)');
             return;
         }
 

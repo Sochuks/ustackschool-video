@@ -1,22 +1,28 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 // import { setCurrentVideo } from './store/slices/VideoSlice';
 import VideoPlayer from './components/VideoPlayer';
-import type { RootState, AppDispatch } from './store';
+import type { RootState } from './store';
 import VideoList from './components/VideoList';
 import AddVideoForm from './components/AddVideoForm';
 
 function App() {
- 
-  const dispatch = useDispatch();
+  // Get current Video ID from state
   const currentVideoID = useSelector((state: RootState) => state.videos.currentVideoID )
   
+  // Get Selected Video
   const selectedVideo = useSelector((state: RootState) => 
     state.videos.allVideos.find((video) => video.id === currentVideoID)
   );
 
-  const videoId = selectedVideo
-  ? selectedVideo.url.match(/v=([^&]+)/)?.[1] || selectedVideo.url.split('/').pop() || null
-  : null; 
+  // Get Youtube Video ID
+  const getYouTubeVideoID = (url: string): string | null =>{
+    // Match common YouTube URL formats
+    const regex = /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  }
+
+  const videoId = selectedVideo ? getYouTubeVideoID(selectedVideo.url) : null; 
   return (
     <>
       {/* Body Container */}
@@ -27,6 +33,10 @@ function App() {
           </h1>
         </header>
         <main className='w-full max-w-5xl space-y-8'>
+          {/* Alert to show error */}
+          {videoId === null && currentVideoID !== null && (
+            <p>Invalid Yotube URL for seleted video</p>
+          )}
           {/* Grid Container */}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
             {/* Video Column */}

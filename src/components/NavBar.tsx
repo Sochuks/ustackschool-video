@@ -1,4 +1,3 @@
-import React from 'react'
 import Imagelogo from '../assets/img/Ustack-logo.png'
 
 const NavBar = () => {

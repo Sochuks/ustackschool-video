@@ -6,10 +6,10 @@ interface VideosState {
     currentVideoID: string | null;
 }
 
-// Save video to local storage
-const saveVideos = (videos: Video[]) => {
-  localStorage.setItem('videos', JSON.stringify(videos));
-};
+// // Save video to local storage
+// const saveVideos = (videos: Video[]) => {
+//   localStorage.setItem('videos', JSON.stringify(videos));
+// };
 
 const initialState: VideosState = {
     allVideos: [

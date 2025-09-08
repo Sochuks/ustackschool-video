@@ -1,7 +1,6 @@
 import {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { addVideo } from "../store/slices/videoSlice";
-import type { Video } from "../types";
 
 const AddVideoForm: React.FC = () => {
     const [title, setTitle] = useState('');

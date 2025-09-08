@@ -1,69 +1,28 @@
-# React + TypeScript + Vite
+# UstackSchool Video Learner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React/TypeScript application for managing and playing educational YouTube videos, built as a take-home assignment to demonstrate mid-level web development skills for UstackSchool's EdTech platform.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Video Playback**: Embed YouTube videos using `react-youtube`, with a memoized player for performance.
+- **Add Videos**: Simplified form (email + YouTube URL) fetches mock metadata (title, created date, views).
+- **Video List**: Responsive table (desktop) or cards (mobile) with watch/delete controls, powered by Redux.
+- **State Persistence**: Videos saved to `localStorage` for persistence across refreshes.
+- **Responsive UI**: Tailwind v4 with custom animations (`fade-in`, `shake`) and accessibility (ARIA labels).
+- **Mock API**: Simulates YouTube Data API to fetch metadata, avoiding Google Cloud setup for demo.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React 18, TypeScript, Vite
+- **State Management**: Redux Toolkit
+- **Styling**: Tailwind CSS v4 (`@tailwindcss/vite`)
+- **YouTube Integration**: `react-youtube`
+- **Deployment**: GitHub Pages
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repo:
+   ```bash
+   git clone <your-repo-url>
+   cd ustackschool-video-learner
+   ```

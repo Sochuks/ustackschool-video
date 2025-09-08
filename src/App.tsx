@@ -4,6 +4,7 @@ import VideoPlayer from './components/VideoPlayer';
 import type { RootState } from './store';
 import VideoList from './components/VideoList';
 import AddVideoForm from './components/AddVideoForm';
+import NavBar from './components/NavBar';
 
 function App() {
   // Get current Video ID from state
@@ -26,26 +27,34 @@ function App() {
   return (
     <>
       {/* Body Container */}
-      <div className='min-h-screen bg-gray-100 flex flex-col items-center py-8'>
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-edtech-blue">
-            UstackSchool Video Learner
-          </h1>
+      <div className='min-h-screen bg-gradient-to-b from-gray-50 to-gray-300 flex flex-col py-8 px-4 sm:px-6 lg:px-8'>
+        <header className="mb-8 border-b border-b-gray-300">
+          <NavBar />
         </header>
-        <main className='w-full max-w-5xl space-y-8'>
+        <main className='w-full max-w-6xl mx-auto space-y-8 lg:px-2'>
+          {/* Title */}
+          <div className=''>
+            <h3 className="font-bold text-[var(--color-secondary)]">
+              UstackSchool Video PlayList
+            </h3>
+            <p>Select video from playlist or <a className='text-[var(--color-primary)] hover:text-indigo-900' href="#AddVideoForm">Add Video</a> to List</p>
+          </div>
+          
           {/* Alert to show error */}
           {videoId === null && currentVideoID !== null && (
-            <p>Invalid Yotube URL for seleted video</p>
+          <p className="text-red-500 text-center text-sm sm:text-base animate-pulse">
+            Invalid YouTube URL for selected video
+          </p>
           )}
           {/* Grid Container */}
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
             {/* Video Column */}
-            <div className="rounded bg-gray-300 lg:col-span-2">
+            <div className="rounded-md lg:col-span-2">
               <VideoPlayer videoID={videoId} />
             </div>
 
             {/* Video List */}
-            <div className="rounded bg-gray-300">
+            <div className="rounded-md p-4 bg-[var(--color-background)]">
               <VideoList />
             </div>
           </div>

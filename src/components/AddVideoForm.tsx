@@ -8,6 +8,7 @@ const AddVideoForm: React.FC = () => {
     const [url, setUrl] = useState('');
     const [thumbnail, setThumbnail] = useState('');
     const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -21,13 +22,15 @@ const AddVideoForm: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) =>{
         e.preventDefault();
 
-        // Basic form validtion to cheeck for empty fields and YouTube URL
+        // Basic form validtion for empty fields
         if(!title || !url){
-            setError('All Fields are required!');
+            setError('Video title or URL is required!');
+            setIsLoading(false);
             return;
         }
         if(!validateYoutubeURL(url)){
             setError('Please enter a valid YouTube URL (e.g., https://www.youtube.com/watch?v=...)');
+            setIsLoading(false);
             return;
         }
 
@@ -38,13 +41,14 @@ const AddVideoForm: React.FC = () => {
         setUrl('');
         setThumbnail('');
         setError(null);
+        setIsLoading(false);
     }
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md max-w-lg mx-auto mb-6">
-      <h2 className="text-xl font-semibold text-edtech-blue mb-4">
+    <div id="#AddVideoForm" className="bg-white p-6 rounded-md shadow-md max-w-lg mx-auto mb-6">
+      <h2 className="text-xl font-semibold text-[var(--color-secondary)] mb-4">
         Add a New Video
       </h2>
-      <form onSubmit={handleSubmit} className="sapce-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
             <label 
                 htmlFor="title"
@@ -54,20 +58,8 @@ const AddVideoForm: React.FC = () => {
                 id="title" 
                 value={title}
                 onChange = {(e)=> setTitle(e.target.value)}
-                className='mt-1 block w-full rounded-md border border-gray-300 p-2 focus:ring-blue-500 focus:border-blue-500'
-                placeholder='Enter Video Title' />
-        </div>
-        <div>
-            <label 
-                htmlFor="thumbnail"
-                className='block text-sm font-medium text-gray-700'>Video Thumbnail</label>
-            <input 
-                type="text" 
-                id="title" 
-                value={thumbnail}
-                onChange = {(e)=> setThumbnail(e.target.value)}
-                className='mt-1 block w-full rounded-md border border-gray-300 p-2 focus:ring-blue-500 focus:border-blue-500'
-                placeholder='Enter Video Title' />
+                className='mt-1 block w-full rounded-md border border-gray-300 p-3 focus:ring-blue-500 focus:border-blue-500'
+                placeholder='Enter video title' />
         </div>
         <div>
             <label 
@@ -78,17 +70,34 @@ const AddVideoForm: React.FC = () => {
                 id="title" 
                 value={url}
                 onChange = {(e)=> setUrl(e.target.value)}
-                className='mt-1 block w-full rounded-md border border-gray-300 p-2 focus:ring-blue-500 focus:border-blue-500'
+                className='mt-1 block w-full rounded-md border border-gray-300 p-3 focus:ring-blue-500 focus:border-blue-500'
                 placeholder='https://www.youtube.com/watch?v=...' />
         </div>
-        {error && (
-          <p className="text-red-500 text-sm">{error}</p>
+        <div>
+            <label 
+                htmlFor="thumbnail"
+                className='block text-sm font-medium text-gray-700'>Video Thumbnail</label>
+            <textarea  
+                id="title" 
+                value={thumbnail}
+                onChange = {(e)=> setThumbnail(e.target.value)}
+                className='mt-1 block w-full rounded-md border border-gray-300 p-3 focus:ring-blue-500 focus:border-blue-500'
+                placeholder='Enter video description'></textarea>
+        </div>
+       {error && (
+          <p className="text-red-500 text-sm text-center font-semibold">{error}</p>
         )}
         <button
           type="submit"
-          className="w-full bg-blue-800 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-200"
+          disabled={isLoading}
+          className={`w-full py-3 px-4 rounded-md text-white font-medium transition duration-200 transform hover:scale-105 ${
+            isLoading
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-[var(--color-primary)] hover:bg-[var(--color-secondary)]'
+          }`}
+          aria-label="Add new video"
         >
-          Add Video
+          {isLoading ? 'Adding...' : 'Add Video'}
         </button>
       </form>
 

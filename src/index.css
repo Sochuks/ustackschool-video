@@ -1,1 +1,131 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Graphik Regular';
+  src: url('./assets/fonts/GraphikRegular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base{
+    :root {
+       
+        /* Color Palette */
+        --color-primary:#672DEE;
+        --color-secondary:#160E31;
+        --color-background:#D8D3E4;
+
+        /* Font Families */
+        --font-primary: 'Graphik Regular', 'Inter', sans-serif;
+
+        /* Responsive Typography with clamp */
+        --text-h1: clamp(2.5rem, 5vw, 4rem);  
+        --text-h2: clamp(2rem, 4vw, 3rem);  
+        --text-h3: clamp(1.75rem, 3.5vw, 2.5rem); 
+        --text-h4: clamp(1.5rem, 3vw, 2rem);
+
+        --text-body: clamp(1rem, 2vw, 1.25rem); 
+        --text-subtitle: clamp(1.25rem, 2.5vw, 1.5rem);
+        --text-caption: clamp(0.875rem, 1.75vw, 1rem);
+        --text-small: clamp(0.75rem, 1.5vw, 0.875rem);
+    }
+
+    /* Apply font families */
+    html {
+        font-family: var(--font-primary);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-primary);
+        font-weight: 500;
+    }
+
+    /* Apply responsive typography */
+    h1 {
+        font-size: var(--text-h1);
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: var(--text-h2);
+        line-height: 1.3;
+    }
+
+    h3 {
+        font-size: var(--text-h3);
+        line-height: 1.4;
+    }
+
+    h4 {
+        font-size: var(--text-h4);
+        line-height: 1.4;
+    }
+
+        p, a, button {
+        font-size: var(--text-body);
+        line-height: 1.6;
+    }
+
+    .subtitle {
+        font-size: var(--text-subtitle);
+        line-height: 1.5;
+        font-family: var(--font-heading);
+    }
+
+    .caption {
+        font-size: var(--text-caption);
+        line-height: 1.4;
+    }
+
+    .small {
+        font-size: var(--text-small);
+        line-height: 1.3;
+    }
+
+    a {
+        font-size: var(--text-body);
+        font-weight: 500;
+    }
+
+    button {
+        font-size: 15px;
+        font-weight: 500;
+    }
+}
+
+@layer components {
+    /* Primary Button */
+    .btn-primary {
+        padding: 4px;
+        background-color: var(--color-primary);
+        color: white;
+        font-family: var(--font-heading);
+        font-weight: 500;
+        font-size: 15px;
+        border-radius: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #fff; 
+    }
+
+    /* Secondary Button */
+    .btn-secondary {
+    padding: 4px;
+    background-color: transparent;
+    color: red;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+        background-color: red;
+        color: white;
+    }
+}

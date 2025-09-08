@@ -37,7 +37,7 @@ function App() {
             <h3 className="font-bold text-[var(--color-secondary)]">
               UstackSchool Video PlayList
             </h3>
-            <p>Select video from playlist or <a className='text-[var(--color-primary)] hover:text-indigo-900' href="#AddVideoForm">Add Video</a> to List</p>
+            <p>Select video from playlist or link <a href="/#AddVideoForm" className='text-[var(--color-primary)] hover:text-indigo-900'>Add Video</a> to List</p>
           </div>
           
           {/* Alert to show error */}
@@ -50,7 +50,11 @@ function App() {
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
             {/* Video Column */}
             <div className="rounded-md lg:col-span-2">
-              <VideoPlayer videoID={videoId} />
+              <VideoPlayer 
+                  videoID={videoId}
+                  title={selectedVideo?.title}
+                  description={selectedVideo?.description}
+               />
             </div>
 
             {/* Video List */}

@@ -2,10 +2,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from "../store";
 import { deleteVideo, setCurrentVideo } from "../store/slices/videoSlice";
 import type { Video } from "../types";
+import { memo } from 'react';
 
 
 const VideoList: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
+    // Get current Video ID & Videos from state
+    const currentVideoID = useSelector((state: RootState) => state.videos.currentVideoID )
     const videos = useSelector((state: RootState) => state.videos.allVideos);
 
     // Handle watch button
@@ -23,15 +26,18 @@ const VideoList: React.FC = () => {
             <h3 className="subtitle font-semibold text-[var(--color-secondary)] mb-4">
                 Video Library
             </h3>
+            {videos.length === 0 && <p className='bg-[var(--color-background)] rounded-md text-black text-center'>No videos available.</p>}
             {videos.map((video: Video) => (
-                <div key={video.id} className="flex items-center p-2 justify-between border-b border-[#4c4664] group group-hover:border-[#9494a4] hover:bg-gray-200 group-hover:cursor-pointer">
-                    <div className='space-y-2 w-[70%]' >
-                        <h4 className="caption text-black group-hover:text-[var(--color-primary)]">{video.title}</h4>
-                        <p className='small'>{video.thumbnail}</p>
+                <div key={video.id} className={`flex items-center justify-between p-2 rounded-t-md border-b border-[#4c4664] group hover:bg-gray-200 hover:cursor-pointer ${
+            video.id === currentVideoID ? 'bg-gray-200' : ''
+          }`}>
+                    <div className='flex-1 space-y-2' >
+                        <h4 className="text-lg text-black group-hover:text-[var(--color-primary)]">{video.title}</h4>
+                        <p className='small text-gray-700 line-clamp-2'>{video.description}</p>
                     </div>
 
 
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 ml-2">
                         <button
                             className="btn-primary flex items-center justify-between gap-1 px-1 pr-2 group-hover:bg-white"
                             onClick={() => handleWatch(video.id)}
@@ -68,4 +74,4 @@ const VideoList: React.FC = () => {
     )
 }
 
-export default VideoList
+export default memo(VideoList)

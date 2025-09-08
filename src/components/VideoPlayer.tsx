@@ -1,14 +1,22 @@
-import YouTube from "react-youtube";
-import { memo } from 'react';
+import YouTube, {type YouTubeProps} from "react-youtube";
+import { memo, useState, useEffect } from 'react';
 
 
 interface VideoPlayerProps {
     videoID: string | null;
+    title?: string;
+    description?: string;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID}) => {
+const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID, title, description}) => {
+    const [loading, setLoading] = useState<boolean>(videoID !== null);
+      const [error, setError] = useState<string | null>(null);
+
+     // Debug logs
+    console.log('VideoPlayer: videoID=', videoID);
+
     // react-youtube player options
-    const options = {
+    const options: YouTubeProps['opts'] = {
         height: '420',
         width: '100%',
         playerVars: {
@@ -16,11 +24,50 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID}) => {
         },
     };
 
-    const onReady = (event: {target:any})=>{
-        console.log('Video Player is Ready!');
+    const onReady: YouTubeProps['onReady'] = (event)=>{
+        console.log('Video Player is Ready!', event.target);
+        setLoading(false);
+        setError(null)
     };
 
-    if (!videoID){
+    const onStateChange: YouTubeProps['onStateChange'] = (event) =>{
+        // Player states: -1 (unstarted), 3 (buffering), 1 (playing), etc.
+        if (event.data === 1 || event.data === 2) {
+            // Playing or Paused
+            if (loading) {
+                setLoading(false);
+                setError(null);
+        }
+        } else if (event.data === 3 && !loading) {
+        // Buffering (only set loading if not already loading)
+        setLoading(true);
+        }
+    };
+    
+    const onError: YouTubeProps['onError'] = (event) => {
+    setLoading(false);
+    const errorMessages: Record<number, string> = {
+      2: 'Invalid video ID.',
+      5: 'HTML5 player error.',
+      100: 'Video not found.',
+      101: 'Video not allowed for embedding.',
+      150: 'Video not allowed for embedding.',
+    };
+    setError(errorMessages[event.data] || 'Failed to load video. Please check the video ID or try another video.');
+    };
+
+    // Fallback timeout to prevent infinite spinner
+    useEffect(() => {
+        if (loading && videoID) {
+            const timeout = setTimeout(() => {
+            setLoading(false)
+            setError('Video loading timed out. Try another video.')
+        }, 15000)
+        return () => clearTimeout(timeout)
+        }
+    }, [loading, videoID])
+
+    if (!videoID ){
         return(
             <div className="bg-[var(--color-background)] rounded-md text-black text-center p-8">
                 <p className="text-lg">Add a video to the playlist</p>
@@ -28,22 +75,44 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID}) => {
         );
     }
 
+      if (error) {
+        return (
+        <div className="bg-[var(--color-background)] rounded-md text-red-600 text-center p-8">
+            <p className="text-lg">{error}</p>
+        </div>
+        );
+    }
+
     return (
         <div className="space-y-4">
             {/* Player */}
-            <div className="w-full max-w-4xl mx-auto shadow-lg rounded-md mb-10">
+            <div className="relative w-full max-w-4xl mx-auto shadow-lg rounded-md mb-10 aspect-video">
                 <YouTube
                     videoId={videoID}
                     opts={options}
                     onReady={onReady}
-                    className="aspect-video" // Maintain 16:9 ratio
+                    onStateChange={onStateChange}
+                    onError={onError}
+                    className="w-full h-full"
                 />
+
+                {loading && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-200/80">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+                    <span className="sr-only">Loading video...</span>
+                    </div>
+                )}
+
             </div>
         {/* Description */}
-        <div className="space-y-2">
-            <h3 className="subtitle font-semibold text-[var(--color-secondary)] mb-4">Description</h3>
-            <p className="caption">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere fugit asperiores odio qui rerum. Odio.</p>
-        </div>
+        {!loading && (
+            <div className="w-full space-y-2 max-w-4xl mx-auto">
+            <h3 className="subtitle font-semibold text-[var(--color-secondary)]">
+                {title || 'Untitled Video'}
+            </h3>
+            <p className="caption text-gray-700">{description}</p>
+            </div>
+        )}
         </div>
 
   );

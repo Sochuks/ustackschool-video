@@ -6,7 +6,7 @@ import type { Video } from "../types";
 const AddVideoForm: React.FC = () => {
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
-    const [thumbnail, setThumbnail] = useState('');
+    const [description, setDescription] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -35,16 +35,16 @@ const AddVideoForm: React.FC = () => {
         }
 
         // Dispatch form video details
-        dispatch(addVideo({title, url, thumbnail}));
+        dispatch(addVideo({title, url, description}));
         // Reset form
         setTitle('');
         setUrl('');
-        setThumbnail('');
+        setDescription('');
         setError(null);
         setIsLoading(false);
     }
   return (
-    <div id="#AddVideoForm" className="bg-white p-6 rounded-md shadow-md max-w-lg mx-auto mb-6">
+    <div id="AddVideoForm" className="bg-white p-6 rounded-md shadow-md max-w-lg mx-auto mb-6">
       <h2 className="text-xl font-semibold text-[var(--color-secondary)] mb-4">
         Add a New Video
       </h2>
@@ -76,12 +76,13 @@ const AddVideoForm: React.FC = () => {
         <div>
             <label 
                 htmlFor="thumbnail"
-                className='block text-sm font-medium text-gray-700'>Video Thumbnail</label>
+                className='block text-sm font-medium text-gray-700'>Video Description</label>
             <textarea  
                 id="title" 
-                value={thumbnail}
-                onChange = {(e)=> setThumbnail(e.target.value)}
+                value={description}
+                onChange = {(e)=> setDescription(e.target.value)}
                 className='mt-1 block w-full rounded-md border border-gray-300 p-3 focus:ring-blue-500 focus:border-blue-500'
+                rows={3}
                 placeholder='Enter video description'></textarea>
         </div>
        {error && (

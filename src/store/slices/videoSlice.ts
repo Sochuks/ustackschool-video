@@ -15,27 +15,27 @@ const initialState: VideosState = {
     allVideos: [
         {
             id: 'test-video-1',
-            title: 'The first Whack video',
-            url: 'https://www.youtube.com/watch?v=kq6IhAZVNh8', // Rick Astley - Never Gonna Give You Up
-            thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg',
+            title: 'You Need to Be Bored.',
+            url: 'https://www.youtube.com/watch?v=orQKfIXMiA8',
+            description: 'Boredom isnt a bug—its a feature. Harvard professor Arthur C. Brooks explains why boredom unlocks creativity, activates a powerful brain network, and might even protect you from depression. Learn how the mind wanders—and why thats a very good thing.',
         },
           {
-            id: 'live-stream-guide-1',
-            title: 'How to Live Stream on YouTube (The COMPLETE 2025 Guide)',
-            url: 'https://www.youtube.com/watch?v=Rdta45g_hg8',
-            thumbnail: 'https://img.youtube.com/vi/Rdta45g_hg8/0.jpg',
+            id: 'test-video-2',
+            title: 'The Best Way to Give a Presentation',
+            url: 'https://youtu.be/1sOgYNgq88E',
+            description: 'This is episode 4 of the animated series, “Public Speaking 101.” Ideas change everything —  and since language lets us share our ideas, learning how to use it well gives speakers the power to inspire people and even change how they think. This 11-episode course will teach you how to identify, develop, and share your best ideas, while mastering essential communication skills along the way.',
         },
         {
-            id: 'live-stream-beginners-2',
-            title: 'How To LIVE STREAM On YouTube - UPDATED Beginners ...',
-            url: 'https://www.youtube.com/watch?v=x9ZZS1v11Sc',
-            thumbnail: 'https://img.youtube.com/vi/x9ZZS1v11Sc/0.jpg',
+            id: 'test-video-3',
+            title: 'Sam Altmans Method for Clear Thinking',
+            url: 'https://youtu.be/tDmjz6HB-yw',
+            description: 'As one of todays most successful entrepreneurs, Sam champions the tremendous value of writing: how it clarifies your thinking, expands your ideas, and levels-up your life in every sense, both personally and professionally. Plus, he has a love for the creative. (Have you ever met someone who can recite Percy Bysshe Shelley poems from memory? Well, Sam can.)',
         },
         {
-            id: 'live-stream-tutorial-3',
-            title: 'How to LIVESTREAM on YouTube - UPDATED Beginners ...',
+            id: 'test-video-4',
+            title: 'How to Livestream on YouTube',
             url: 'https://www.youtube.com/watch?v=BSz5a5ryc-k',
-            thumbnail: 'https://img.youtube.com/vi/BSz5a5ryc-k/0.jpg',
+            description: 'Here is how to live stream on YouTube! We will cover the easiest way to go live and work up to more advanced live stream software so you can become a YouTube live streaming PRO. ',
         }
 
 

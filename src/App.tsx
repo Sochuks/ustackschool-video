@@ -37,7 +37,7 @@ function App() {
             <h3 className="font-bold text-[var(--color-secondary)]">
               UstackSchool Video PlayList
             </h3>
-            <p>Select video from playlist or link <a href="/ustackschool-video/#AddVideoForm" className='text-[var(--color-primary)] hover:text-indigo-900'>Add Video</a> to List</p>
+            <p>Select video from playlist or link <a href="ustackschool-video/#AddVideoForm" className='text-[var(--color-primary)] hover:text-indigo-900'>Add Video</a> to List</p>
           </div>
           
           {/* Alert to show error */}

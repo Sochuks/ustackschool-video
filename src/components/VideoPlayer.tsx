@@ -12,12 +12,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID, title, description}) 
     const [loading, setLoading] = useState<boolean>(videoID !== null);
       const [error, setError] = useState<string | null>(null);
 
-     // Debug logs
-    console.log('VideoPlayer: videoID=', videoID);
+    //  // Debug logs
+    // console.log('VideoPlayer: videoID=', videoID);
 
     // react-youtube player options
     const options: YouTubeProps['opts'] = {
-        height: '420',
+        height:'100%',
         width: '100%',
         playerVars: {
         autoplay: 0, 
@@ -84,9 +84,9 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID, title, description}) 
     }
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-2 sm:space-y-4">
             {/* Player */}
-            <div className="relative w-full max-w-4xl mx-auto shadow-lg rounded-md mb-10 aspect-video">
+            <div className="relative w-full max-w-full sm:max-w-3xl lg:max-w-4xl mx-auto shadow-lg rounded-md mb-4 sm:mb-6 lg:mb-10 aspect-video">
                 <YouTube
                     videoId={videoID}
                     opts={options}
@@ -98,7 +98,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID, title, description}) 
 
                 {loading && (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-200/80">
-                    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+                    <div className="animate-spin rounded-full h-8 w-8 sm:h-12 sm:w-12 border-t-4 border-[var(--color-primary)]"></div>
                     <span className="sr-only">Loading video...</span>
                     </div>
                 )}
@@ -106,7 +106,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({videoID, title, description}) 
             </div>
         {/* Description */}
         {!loading && (
-            <div className="w-full space-y-2 max-w-4xl mx-auto">
+            <div className="w-full max-w-full sm:max-w-3xl lg:max-w-4xl mx-auto px-2 sm:px-0 space-y-1 sm:space-y-2">
             <h3 className="subtitle font-semibold text-[var(--color-secondary)]">
                 {title || 'Untitled Video'}
             </h3>
